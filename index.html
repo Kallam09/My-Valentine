@@ -74,7 +74,6 @@
     .no {
       background: #555;
       margin-top: 10px;
-      position: absolute;
     }
 
     /* Floating hearts */
@@ -137,13 +136,13 @@
 <!-- VALENTINE QUESTION -->
 <div class="card hidden" id="valentine">
   <h1>Geethu 💘</h1>
-  <p>You already know how special you are to me…</p>
+  <p>This song always reminds me of you 💙</p>
   <p>So I just have one question 🥹</p>
 
   <h2>Will you be my Valentine? 💍</h2>
 
   <button class="yes" onclick="yesClick()">YES 💖</button>
-  <button class="no" id="noBtn">NO 🙃</button>
+  <button class="no" onclick="noClick()">NO 🙃</button>
 </div>
 
 <!-- SUCCESS -->
@@ -153,6 +152,16 @@
   <p>You’re not just my Valentine…  
   you’re my forever 🌸</p>
 </div>
+
+<!-- Background Music (YouTube Embed, starts later) -->
+<iframe
+  id="bgMusic"
+  width="0"
+  height="0"
+  src=""
+  frameborder="0"
+  allow="autoplay">
+</iframe>
 
 <script>
   function checkQuiz() {
@@ -167,6 +176,11 @@
     ) {
       document.getElementById('quiz').classList.add('hidden');
       document.getElementById('valentine').classList.remove('hidden');
+
+      // Start music
+      const music = document.getElementById("bgMusic");
+      music.src =
+        "https://www.youtube.com/embed/GTCwRMuIjzA?autoplay=1&loop=1&playlist=GTCwRMuIjzA";
     } else {
       document.getElementById('quizError').innerText =
         "Hehe 😜 one or more answers are wrong. Try again!";
@@ -178,13 +192,15 @@
     document.getElementById('success').classList.remove('hidden');
   }
 
-  const noBtn = document.getElementById("noBtn");
-  noBtn.addEventListener("mouseover", () => {
-    const x = Math.random() * (window.innerWidth - 100);
-    const y = Math.random() * (window.innerHeight - 50);
-    noBtn.style.left = x + "px";
-    noBtn.style.top = y + "px";
-  });
+  function noClick() {
+    alert(
+      "Error 🚨\n\n" +
+      "Nice try Geethu 😌\n\n" +
+      "You are already his Valentine for life 💖\n" +
+      "Future wife loading… 💍\n\n" +
+      "Please click YES ❤️"
+    );
+  }
 
   // Floating hearts generator
   setInterval(() => {
