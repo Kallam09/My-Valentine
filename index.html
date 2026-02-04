@@ -54,7 +54,6 @@
     .hidden { display: none; }
     .error { color: red; margin-top: 10px; }
 
-    /* Floating hearts */
     .heart {
       position: absolute;
       bottom: -20px;
@@ -125,10 +124,13 @@
 <!-- VALENTINE -->
 <div class="card hidden" id="valentine">
   <h1>Geethu 💘</h1>
-  <p style="font-style: italic;">This song always reminds me of you 💙</p>
+
+  <p style="font-style: italic;">
+    There’s a song that always reminds me of you —  
+    the one You sang to me first, about loving deeply and being held close.
+  </p>
 
   <h2>Will you be my Valentine? 💍</h2>
-  <p style="font-size: 13px; color: #888;">🔊 Tap anywhere to turn on music</p>
 
   <button class="yes" onclick="yesClick()">YES 💖</button>
   <button class="no" onclick="noClick()">NO 🙃</button>
@@ -140,16 +142,6 @@
   <p>You just made my heart very very happy ❤️</p>
   <p>You’re my Valentine. Always 🌸</p>
 </div>
-
-<!-- MUSIC -->
-<iframe
-  id="bgMusic"
-  width="0"
-  height="0"
-  src=""
-  frameborder="0"
-  allow="autoplay">
-</iframe>
 
 <script>
   function checkStep1() {
@@ -174,9 +166,6 @@
     if (document.getElementById("vacation").value === "Banff") {
       step3.classList.add("hidden");
       valentine.classList.remove("hidden");
-
-      bgMusic.src =
-        "https://www.saregama.com/song/vaalu-kanuladaanaa_64456";
     } else {
       err3.innerText = "Almost 😄 but not quite";
     }
@@ -196,12 +185,6 @@
       "Please click YES ❤️"
     );
   }
-
-  document.addEventListener("click", () => {
-    if (bgMusic.src.includes("mute=1")) {
-      bgMusic.src = bgMusic.src.replace("mute=1", "mute=0");
-    }
-  }, { once: true });
 
   setInterval(() => {
     const h = document.createElement("div");
