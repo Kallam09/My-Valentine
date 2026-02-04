@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For Geethu 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      z-index: 2;
+    }
+
+    h1 {
+      color: #e63946;
+    }
+
+    p {
+      color: #444;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      background: #e63946;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+
+    .yes {
+      background: #2ecc71;
+      font-size: 18px;
+    }
+
+    .no {
+      background: #555;
+      margin-top: 10px;
+      position: absolute;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      color: rgba(255,255,255,0.8);
+      font-size: 20px;
+      animation: floatUp 6s linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-120vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- QUIZ -->
+<div class="card" id="quiz">
+  <h1>Hey Geethu 💕</h1>
+  <p>Before we get to something important…  
+  let’s see how well you remember **us** 🥰</p>
+
+  <p>Where did we first kiss?</p>
+  <select id="kiss">
+    <option value="">Select</option>
+    <option>Home</option>
+    <option>Beach</option>
+    <option>Car</option>
+  </select>
+
+  <p>What was our first date?</p>
+  <select id="date">
+    <option value="">Select</option>
+    <option>An icecream at Cream Stone</option>
+    <option>Pizza at Onesta</option>
+    <option>Beach day</option>
+  </select>
+
+  <p>Our favourite vacation?</p>
+  <select id="vacation">
+    <option value="">Select</option>
+    <option>Banff</option>
+    <option>Cancun</option>
+    <option>Pondicherry</option>
+  </select>
+
+  <button onclick="checkQuiz()">Continue 💖</button>
+  <div class="error" id="quizError"></div>
+</div>
+
+<!-- VALENTINE QUESTION -->
+<div class="card hidden" id="valentine">
+  <h1>Geethu 💘</h1>
+  <p>You already know how special you are to me…</p>
+  <p>So I just have one question 🥹</p>
+
+  <h2>Will you be my Valentine? 💍</h2>
+
+  <button class="yes" onclick="yesClick()">YES 💖</button>
+  <button class="no" id="noBtn">NO 🙃</button>
+</div>
+
+<!-- SUCCESS -->
+<div class="card hidden" id="success">
+  <h1>YAYYYY 🥹💖</h1>
+  <p>I knew it ❤️</p>
+  <p>You’re not just my Valentine…  
+  you’re my forever 🌸</p>
+</div>
+
+<script>
+  function checkQuiz() {
+    const kiss = document.getElementById('kiss').value;
+    const date = document.getElementById('date').value;
+    const vacation = document.getElementById('vacation').value;
+
+    if (
+      kiss === "Home" &&
+      date === "An icecream at Cream Stone" &&
+      vacation === "Banff"
+    ) {
+      document.getElementById('quiz').classList.add('hidden');
+      document.getElementById('valentine').classList.remove('hidden');
+    } else {
+      document.getElementById('quizError').innerText =
+        "Hehe 😜 one or more answers are wrong. Try again!";
+    }
+  }
+
+  function yesClick() {
+    document.getElementById('valentine').classList.add('hidden');
+    document.getElementById('success').classList.remove('hidden');
+  }
+
+  const noBtn = document.getElementById("noBtn");
+  noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  });
+
+  // Floating hearts generator
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerText = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }, 400);
+</script>
+
+</body>
+</html>
